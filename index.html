@@ -2,9 +2,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <title>Reaction Tester</title>
 
     <style type="text/css"> 
+
+      .para{
+        padding-left: 40px;
+        margin-left: 20px;
+        font-size: large;
+        font-weight: 500;
+
+      }
+
+      .click{
+     
+        margin-left: 60px;
+        margin-top: 50px;
+        margin-bottom: 10px;
+
+      }
 
         #shape{
             width: 200px;
@@ -16,6 +33,9 @@
 
         }
 
+        .topic{
+            text-align: center;
+        }
 
     
     </style>
@@ -23,28 +43,52 @@
 
 </head>
 <body>
-    <p><h4>Your time : </h4> <span id="timeTaken"></span></p>
+    <h2 class="topic">Click on the shapes as fast as you can!</h2>
+    <div id="container1">
+
+        <input type="button" value="click me" class="click" 
+        onclick="setTimeout(makeShapeAppear,Math.random()*1000)" />
+    <p class="para">Your reaction time :  <span id="timeTaken"></span></p>
+    </div>
     <div id="shape"></div>
 
     <script type="text/javascript">
+
+
+        function getRandomColor() {
+        var letters = '0123456789ABCDEF'.split('');
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+        }
 
         function makeShapeAppear(){
 
             var top = Math.random()*400;
             var left = Math.random()*400;
-            var width = Math.random()*400;
-            document.getElementById("shape").style.display = "block";
+            var width = Math.random()*300;
+
+            if(Math.random()>0.5){
+                document.getElementById("shape").style.borderRadius = "50%";
+            }else{
+                document.getElementById("shape").style.borderRadius = "0%";
+            }
+          
+            document.getElementById("shape").style.backgroundColor = getRandomColor();
             document.getElementById("shape").style.top = top +"px";
             document.getElementById("shape").style.left = left +"px";
             document.getElementById("shape").style.width = width +"px";
-            
+            document.getElementById("shape").style.height = width +"px";
+            document.getElementById("shape").style.display = "block";
 
             start = new Date().getTime();
 
             
         }
 
-        setTimeout(makeShapeAppear,Math.random()*2000);
+    
         
 
 
